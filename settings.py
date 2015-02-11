@@ -11,7 +11,7 @@ DEBUG = not APPENGINE_PRODUCTION
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    #('c0s', 'frenchthebread@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -25,7 +25,7 @@ CACHES = {
 }
 
 # If you are using CloudSQL, you can comment out the next line
-TEST_RUNNER = 'lib.testrunnernodb.TestRunnerNoDb'
+#TEST_RUNNER = 'lib.testrunnernodb.TestRunnerNoDb'
 
 """
 Custom session engine using our cache or writing through to the datastore If
@@ -38,28 +38,28 @@ SESSION_ENGINE = "appengine_sessions.backends.cached_db"
 
 # Uncomment these DB definitions to use Cloud SQL.
 # See: https://developers.google.com/cloud-sql/docs/django#development-settings
-#import os
-#if (os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine') or
-#    os.getenv('SETTINGS_MODE') == 'prod'):
-#    # Running on production App Engine, so use a Google Cloud SQL database.
-#    DATABASES = {
-#        'default': {
-#            'ENGINE': 'google.appengine.ext.django.backends.rdbms',
-#            'INSTANCE': 'my_project:instance1',
-#            'NAME': 'my_db',
-#            }
-#        }
-#else:
-#    # Running in development, so use a local MySQL database.
-#    DATABASES = {
-#        'default': {
-#            'ENGINE': 'django.db.backends.sqlite3',
-##            'USER': 'root',
-##            'PASSWORD': '',
-##            'HOST': 'localhost',
-#            'NAME': 'my_db',
-#            }
-#        }
+import os
+if (os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine') or os.getenv('SETTINGS_MODE') == 'prod'):
+    # Running on production App Engine, so use a Google Cloud SQL database.
+    DATABASES = {
+        'default': {
+            'ENGINE': 'google.appengine.ext.django.backends.rdbms',
+            'INSTANCE': 'tomattooblogging:onedb',
+            'NAME': 'onedb',
+            'USER': 'root'
+            }
+        }
+else:
+    # Running in development, so use a local MySQL database.
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'USER': 'root',
+            'PASSWORD': '',
+            'HOST': 'localhost',
+            'NAME': 'dbone',
+            }
+        }
 
 
 
@@ -70,7 +70,7 @@ SESSION_ENGINE = "appengine_sessions.backends.cached_db"
 # timezone as the operating system.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'Europe/Helsinki'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -91,18 +91,18 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = '~/dev/gits/djappengine/media/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = 'static'
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -115,9 +115,7 @@ ADMIN_MEDIA_PREFIX = '/static/admin/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
+
 )
 
 # List of finder classes that know how to find static files in
@@ -125,7 +123,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    #'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 # Make this unique, and don't share it with anybody.
@@ -135,7 +133,7 @@ SECRET_KEY = '^(&s11q!@t2j@=dgpp65k+df6o1(@1h9cq-$^p@=k4!5))xi6u'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+#    'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -162,9 +160,11 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
+    'registration',
     'appengine_sessions',
+    'django.contrib.comments',
     # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
+    'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
@@ -199,5 +199,5 @@ LOGGING = {
 }
 
 ALLOWED_HOSTS = [
-    'djappeng1ne-beta.appspot.com'
+    'tomattooblogging.appspot.com'
 ]

@@ -1,0 +1,41 @@
+{% extends "main.html" %}
+
+{% block header %}
+{% endblock %}
+
+{% block cover %}
+    <div class="absBG"></div>
+    <div class="jumbotron text-center sunrisecover" >
+        <h1><span class="glyphicon glyphicon-grain"></span> Drop your mind here..</h1>
+    </div>
+
+{% endblock %}
+
+{% block body %}
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <h1>New post</h1>
+        <div class="sign_boxs_place">
+            <form method="post" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group">
+                        {{ field }}
+                    </div>
+                {% endfor %}
+                <div >
+                    <input type="submit" class="btn btn-primary" value="Post" style="float: right"/>
+                    <a class="btn btn-default"  href="/feed">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+    {% if form.errors %}
+        <script>
+            document.ready(function(){
+                alert("Something went wrong. Try again!");
+            });
+        </script>
+    {% endif %}
+{% endblock %}

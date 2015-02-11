@@ -1,0 +1,181 @@
+html, body, .box {
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+}
+body {
+    font-family: 'Helvetica-Neue', Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+body.bgHerePls{
+    background: url('../img/homebg.jpeg') center center no-repeat;
+    background-size: cover;
+}
+.box {
+    display: table;
+    background: rgba(255,255,255,0.9);
+}
+.box .content {
+    height: 200px;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+/*hello world*/
+
+.header{
+    border-bottom:1px solid #eee;
+}
+
+.clip_list{
+    padding: 10px 10px 0px 10px;
+}
+.clip_box{
+    width:100%;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    margin:10px 0 20px 0;
+}
+.thistime{
+    font-size: 13px;
+    color: #777777;
+}
+.clip_head_left{
+    font-size:20px;
+}
+.clip_head_right{
+    text-align: right;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+.clip_head{
+    padding: 10px 10px 5px 10px;
+    display: -webkit-flex;
+    display: flex;
+}
+.clip_head a.link{font-size: 15px}
+.clip_body{
+    padding:7px 10px;
+}
+.clip_bot{
+    border-top: 1px solid #eee;
+    padding:10px;
+    background: #fafafa;
+    box-shadow: inset 0 1px 0 white;
+    display: -webkit-flex;
+    display: flex;
+}
+.clip_bot_left{
+}
+.clip_bot_right{
+    text-align: right; font-size: 13px;
+     -webkit-flex: 1;
+    flex: 1;
+}
+.absBG{
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:200px;
+    z-index: -1;
+    /*background:url('../img/sun.png') bottom center no-repeat ;
+    background-size: cover;*/
+    background: -webkit-linear-gradient(90deg, #00d2ff 10%, #3a7bd5 90%); /* Chrome 10+, Saf5.1+ */
+    background:    -moz-linear-gradient(90deg, #00d2ff 10%, #3a7bd5 90%); /* FF3.6+ */
+    background:     -ms-linear-gradient(90deg, #00d2ff 10%, #3a7bd5 90%); /* IE10 */
+    background:      -o-linear-gradient(90deg, #00d2ff 10%, #3a7bd5 90%); /* Opera 11.10+ */
+    background:         linear-gradient(90deg, #00d2ff 10%, #3a7bd5 90%); /* W3C */
+
+}
+.container .jumbotron.sunrisecover, .jumbotron.sunrisecover{
+    padding-left: 0;
+    background-color: transparent;
+    color:#fff;
+}
+.sunrisecover span{
+    color:#fff;
+}
+.jumbotron.sunrisecoverLogin{
+    background: -webkit-linear-gradient(90deg, #00d2ff 10%, #3a7bd5 90%); /* Chrome 10+, Saf5.1+ */
+    background:    -moz-linear-gradient(90deg, #00d2ff 10%, #3a7bd5 90%); /* FF3.6+ */
+    background:     -ms-linear-gradient(90deg, #00d2ff 10%, #3a7bd5 90%); /* IE10 */
+    background:      -o-linear-gradient(90deg, #00d2ff 10%, #3a7bd5 90%); /* Opera 11.10+ */
+    background:         linear-gradient(90deg, #00d2ff 10%, #3a7bd5 90%); /* W3C */
+    color:#fff;
+}
+.rightpart{
+    margin:50px 0 20px;
+    background-color: #fff;
+    border:1px solid #eee;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.5);
+-moz-box-shadow:    0px 0px 10px 0px rgba(50, 50, 50, 0.5);
+box-shadow:         0px 0px 10px 0px rgba(50, 50, 50, 0.5);
+}
+.col-md-8.rightpart2{
+    margin:50px 0 20px;
+}
+.rightpart2 h1{
+    color: #fff;
+}
+.postcard{
+    border:1px solid #eee;background-color: #fff;padding:20px; margin-bottom: 15px;border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.5);
+-moz-box-shadow:    0px 0px 10px 0px rgba(50, 50, 50, 0.5);
+box-shadow:         0px 0px 10px 0px rgba(50, 50, 50, 0.5);
+}
+.navbar.customNav{
+    margin-bottom: 0;
+    border: 0;
+    border-radius:0;
+}
+@font-face {
+    font-family: SomeFontOne;
+    src: url(../fonts/TanseekModProArabic-Light.ttf);
+}
+@font-face {
+    font-family: SomeFontTwo;
+    src: url(../fonts/TanseekModProArabic-Medium.ttf);
+}
+.thisFont{
+    font-family: SomeFontTwo;
+    font-size:40px;
+    color: #787878;
+}
+.logolink{
+    color: #fff;
+    text-decoration: none;
+    outline: none;
+}
+.logolink:hover{
+    text-decoration: none;
+}
+.logolink:focus{
+    text-decoration: none;
+}
+.rightpart p{
+    font-size: 15px;
+}
+textarea.form-control{
+    height: 300px;
+    resize: none;
+}
+.form-control{
+    box-shadow: none;
+    -webkit-box-shadow:none;
+    -moz-box-shadow:none;
+    transition:none;
+    -webkit-transition:none;
+    -moz-transition:none;
+    border:1px solid #eee;
+    background-color: #fff;
+}
+.form-control:focus{
+    background-color: #fafafa;
+}

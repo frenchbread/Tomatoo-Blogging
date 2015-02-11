@@ -1,0 +1,96 @@
+{% extends "main.html" %}
+
+{% load comments %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8 rightpart">
+            <h1>
+                {{ p.title|capfirst }}
+            </h1>
+
+            <p>{{ p.body|linebreaks }}</p>
+            <hr/>
+            <div>
+                <a href="/u/{{ p.user }}">{{ p.user }}</a> posted <i class="text-muted"><span data-livestamp="{{ p.timestamp|date:"U" }}" ></span></i>
+               <span>
+                    {% if p.user.username == user.username %}
+                    |
+                    <a class="btn btn-info btn-xs" href="/post/{{ p.pk }}/edit"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+                    <a class="btn btn-danger btn-xs" href="javascript:void(0);" onclick="deletepost('{{ p.id }}')"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                    {% endif %}
+               </span>
+                <span id="this_p{{ p.pk }}">
+                    {% if not user.is_authenticated %}
+                        <a href="#" class="btn btn-primary btn-xs disabled" style="float:right">
+                            <span class="glyphicon glyphicon-star-empty"></span> Save for later
+                        </a>
+                    {% elif l == 'save' %}
+                        <a href="javascript:void(0);" class="btn btn-primary btn-xs" style="float:right" onclick="savee('{{ p.pk }}')" >
+                            <span class="glyphicon glyphicon-star-empty"></span> Save for later
+                        </a>
+                    {% elif l == 'remove' %}
+                        <a href="javascript:void(0);" class="btn btn-warning btn-xs" style="float:right" onclick="removee('{{ p.pk }}')" >
+                            <span class="glyphicon glyphicon-star"></span> Saved
+                        </a>
+                    {% endif %}
+                </span>
+            </div>
+            <hr/>
+            <div >
+                {% if user.is_authenticated %}
+                    {% get_comment_form for p as form %}
+                    <form action="{% comment_form_target %}" method="POST">
+                        <div  class="comment_form">
+                            {% csrf_token %}
+                            {{ form.content_type }}
+                            {{ form.object_pk }}
+                            {{ form.timestamp }}
+                            {{ form.security_hash }}
+                            <input type="hidden" name="name" value="{{ user }}" />
+                            <input type="hidden" name="next" value="/post/{{ p.pk }}" />
+                            <div class="form-group">
+                                <input type="text" name="comment" placeholder="Enter your comment here.." class="form-control"/>
+                            </div>
+                            <div class="form-group">
+                                <input class="btn btn-default" type="submit" value="Add comment" id="id_submit" />
+                            </div>
+                        </div>
+                    </form>
+                    <hr/>
+                {% else %}
+                    <p class="text-center">Please <a href="/accoutns/login">Login</a> to leave a comment.</p>
+                {% endif %}
+                {% get_comment_list for p as comment_list%}
+                {% if comment_list %}
+                    {% for comment in comment_list reversed %}
+                        <div>
+                            <p><a href="/u/{{ comment.user }}"><b>{{ comment.user_name }}</b></a> <i><span class="thistime" data-livestamp="{{ comment.submit_date|date:"U" }}" ></span></i></p>
+                            <p>{{ comment.comment }}</p>
+                            <hr/>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="text-center">No comments yet, be first!</p>
+                {% endif %}
+            </div>
+            <br/><br/>
+        </div>
+        <div class="col-md-2">
+
+        </div>
+    </div>
+
+    <script>
+        function deletepost(post_id){
+            var r = confirm("Are you sure that you want to delete this post?");
+            if (r == true) {
+                window.location = "/post/"+post_id+"/delete";
+            }
+        }
+    </script>
+
+
+{% endblock %}

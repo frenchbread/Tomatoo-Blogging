@@ -1,0 +1,60 @@
+{% extends "main.html" %}
+
+
+{% block body %}
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-8 rightpart">
+        <div class="media" style="padding-top: 20px">
+            <div class="media-left">
+                <a href="#">
+                    <img class="media-object" width="100px" height="100px" src="{{ pic }}" alt="...">
+                </a>
+            </div>
+            <div class="media-body">
+                <h3 class="media-heading">
+                    {% if thisuser.first_name or thisuser.last_name %}
+                        {{ thisuser.first_name }} {{ thisuser.last_name }} <i>{{ thisuser.username }}</i>
+                    {% else %}
+                        {{ thisuser.username }}
+                    {% endif %}
+                </h3>
+                <p>{{ p|length }} post{{ p|pluralize }}</p>
+                {% if thisuser.id == user.id %}
+                    <p><a class="link" href="/settings">Edit profile </a></p>
+                {% endif %}
+            </div>
+        </div>
+        <hr/>
+        <h1>Posts</h1>
+        {% if p %}
+            {% for post in p %}
+                <div>
+                    <h3><a href="/post/{{ post.id }}">{{ post.title|capfirst }}</a></h3>
+                    <p>{{ post.body|truncatewords:"50" }}</p>
+                    <a href="/u/{{ post.user }}"><b>{{ post.user }}</b></a> posted <small><span class="thistime" data-livestamp="{{ post.timestamp|date:"U" }}" ></span></small>
+                    <hr/>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="well well-sm text-center">No posts yet.. Create one <a href="/new">here</a>.</div>
+        {% endif %}
+        <nav>
+            <ul class="pager">
+                {% if p.has_previous %}
+                    {% if p.previous_page_number == 1 %}
+                        <li class="previous"><a href="/feed"><span aria-hidden="true">&larr;</span> Newer</a></li>
+                    {% else %}
+                        <li class="previous"><a href="?page={{ p.previous_page_number }}"><span aria-hidden="true">&larr;</span> Older</a></li>
+                    {% endif %}
+                {% endif %}
+                <li><span>Page {{ p.number }} of {{ p.paginator.num_pages }}</span></li>
+                {% if p.has_next %}
+                    <li class="next"><a href="?page={{ p.next_page_number }}">Older <span aria-hidden="true">&rarr;</span></a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+    <div class="col-md-2">
+        </div>
+{% endblock %}

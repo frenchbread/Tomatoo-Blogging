@@ -1,0 +1,40 @@
+{% extends 'main.html' %}
+{% load filtrs %}
+
+{% block cover %}
+    <div>
+        <div class="jumbotron text-center sunrisecoverLogin">
+            <h1><span class="glyphicon glyphicon-equalizer"></span> Login to Tomattoo</h1>
+        </div>
+    </div>
+{% endblock %}
+
+{% block body %}
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+
+        <form class="form-horizontal" role="form" method="post" action="">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group">
+                    <label for="{{ field.auto_id }}">{{ field.label }}</label>
+                    {{ field|addcss:"form-control" }}
+                </div>
+            {% endfor %}
+            <div class="form-group">
+                <div >
+                    <button type="submit" class="btn btn-default">Sign in</button>
+                    <input type="hidden" name="next" value="/feed"/>
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <div class="col-md-4"></div>
+
+    {% if form.errors %}
+        <script>
+            alert("Username and password don't match. Please, try again.");
+        </script>
+    {% endif %}
+{% endblock %}
