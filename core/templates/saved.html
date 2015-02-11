@@ -13,23 +13,23 @@
                     <a href="/u/{{ post.user }}"><b>{{ post.user }}</b></a> posted <small><span class="thistime" data-livestamp="{{ post.timestamp|date:"U" }}" ></span></small>
                 </div>
             {% endfor %}
+            <nav>
+                <ul class="pager">
+                    {% if p.has_previous %}
+                        {% if p.previous_page_number == 1 %}
+                            <li class="previous"><a href="/feed"><span aria-hidden="true">&larr;</span> Newer</a></li>
+                        {% else %}
+                            <li class="previous"><a href="?page={{ p.previous_page_number }}"><span aria-hidden="true">&larr;</span> Older</a></li>
+                        {% endif %}
+                    {% endif %}
+                    <li><span>Page {{ p.number }} of {{ p.paginator.num_pages }}</span></li>
+                    {% if p.has_next %}
+                        <li class="next"><a href="?page={{ p.next_page_number }}">Older <span aria-hidden="true">&rarr;</span></a></li>
+                    {% endif %}
+                </ul>
+            </nav>
         {% else %}
             <div class="postcard text-center">You haven't saved anything yet..</div>
         {% endif %}
-        <nav>
-            <ul class="pager">
-                {% if p.has_previous %}
-                    {% if p.previous_page_number == 1 %}
-                        <li class="previous"><a href="/feed"><span aria-hidden="true">&larr;</span> Newer</a></li>
-                    {% else %}
-                        <li class="previous"><a href="?page={{ p.previous_page_number }}"><span aria-hidden="true">&larr;</span> Older</a></li>
-                    {% endif %}
-                {% endif %}
-                <li><span>Page {{ p.number }} of {{ p.paginator.num_pages }}</span></li>
-                {% if p.has_next %}
-                    <li class="next"><a href="?page={{ p.next_page_number }}">Older <span aria-hidden="true">&rarr;</span></a></li>
-                {% endif %}
-            </ul>
-        </nav>
     </div>
 {% endblock %}

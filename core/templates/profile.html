@@ -39,6 +39,7 @@
         {% else %}
             <div class="well well-sm text-center">No posts yet.. Create one <a href="/new">here</a>.</div>
         {% endif %}
+        {% if p %}
         <nav>
             <ul class="pager">
                 {% if p.has_previous %}
@@ -54,6 +55,7 @@
                 {% endif %}
             </ul>
         </nav>
+        {% endif %}
     </div>
     <div class="col-md-2">
         </div>
