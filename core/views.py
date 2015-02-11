@@ -235,7 +235,7 @@ def settings(request):
     context_vars = {}
     context_vars.update(csrf(request))
 
-    pic=givemealinkforpic(request.user.emai)
+    pic=givemealinkforpic(request.user.email)
 
     if request.method == 'POST':
         form = SettingsForm(request.POST, instance=request.user)

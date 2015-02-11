@@ -44,8 +44,8 @@ if (os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine') or os.geten
     DATABASES = {
         'default': {
             'ENGINE': 'google.appengine.ext.django.backends.rdbms',
-            'INSTANCE': 'tomattooblogging:onedb',
-            'NAME': 'onedb',
+            'INSTANCE': 'tomattooblogging:one',
+            'NAME': 'one',
             'USER': 'root'
             }
         }
